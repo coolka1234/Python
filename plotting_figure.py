@@ -11,12 +11,12 @@ fig, ax = plt.subplots(nrows=1, ncols=2, figsize=(12, 6))
 # x to dziedzina: 50 próbek z zakresu [-3, 3] wygenerowanych liniowo
 # y to exp(-x^2)
 # y_err to szum pochodzący z rozkładu normalnego o zadanych parametrach
-x = np.arange(-3,3,dtype=float)
+x = np.linspace(-3,3,dtype=float)
 y = np.exp(-x**2)
 y_err = np.random.normal(loc=np.mean(y), scale=0.1, size=len(y))
 
 # Zaznaczamy x, y oraz obszar szumu wokół funkcji
-# ax[0].plot(...)
+ax[0].plot(x, y, label="exp(-x^2)", marker='o')
 ax[0].fill_between(x, y - y_err, y + y_err, alpha=0.2, label="+/- szum")
 
 # Dodajemy oznaczenia osi i legendę na górze po lewej stronie
@@ -37,13 +37,13 @@ ax[1].plot(x, y_2, label="sin(x)")
 
 # Ustawiamy skalę osi x na symetryczną-logarytmiczną oraz dodajemy siatkę w
 # tle kreślonych krzywych
-# ax[1]...
-# ax[1]...
+ax[1].set_xscale('symlog')
+ax[1].grid(True)
 
 # Dodajemy oznaczenia osi i legendę na dole po prawej stronie
 ax[1].set_xlabel("x")
 ax[1].set_ylabel("y")
-# ax[1]...
+ax[1].legend(loc="lower right")
 
 # Dodajemy tytuł
 plt.suptitle("Funkcje wygenerowane w 'numpy' i wykreślone w 'matplotlib'")
